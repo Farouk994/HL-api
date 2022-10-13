@@ -11,13 +11,18 @@ const Wrapper = styled.div`
   max-height: 500px;
   margin: 50px;
   margin-bottom: 50px;
+  padding: 25px;
 `;
 
-const Header = styled.div``;
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const Icon = styled.div``;
 
-const Heading = styled.div``;
+const Heading = styled.h2``;
 
 const Image = styled.div``;
 
@@ -80,8 +85,6 @@ const Profile = ({ user }) => {
         state,
         gender,
       });
-      console.log(user[0].gender);
-      //   setFirstName()
 
       setFirstName(user[0].name.first);
       setLastName(user[0].name.last);
@@ -102,19 +105,30 @@ const Profile = ({ user }) => {
   return (
     <div>
       {user.map((u, i) => (
-        <Wrapper>
+        <Wrapper key={i}>
           <Header>
             <Icon>
               <ArrowBackIcon />
             </Icon>
-            <Heading></Heading>
-            <Image />
+            <Heading>Profile</Heading>
+            <img
+              src={u.picture.medium}
+              alt='profile'
+              style={{ borderRadius: '50%', width: '50px', height: '50px' }}
+            />
           </Header>
+          <hr />
           <Container>
-            <p>Edit</p>
+            <p>
+              <strong>Edit</strong>
+            </p>
             <SubHeader>
               <p>Picture</p>
-              <img src={u.picture.medium} alt='' />
+              <img
+                src={u.picture.medium}
+                alt=''
+                style={{ borderRadius: '50%' }}
+              />
             </SubHeader>
             <Form onSubmit={handleSubmit}>
               <InputForm>
